@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .models import Usuario_BD
 from django.contrib.auth.hashers import make_password, check_password
+from django.conf import settings
 
 # Função para a página de cadastro
 def cadastro(request): 
+    recaptcha_site_key = settings.RECAPTCHA_SITE_KEY
     mensagem_erro = None
     mensagem_sucesso = None
 
@@ -42,7 +44,7 @@ def cadastro(request):
     
     # Se requisição for GET, realiza apenas o render do HTML
     else:
-        return render(request, 'users/cadastro.html')
+        return render(request, 'users/cadastro.html', {'recaptcha_site_key': recaptcha_site_key})
 
 
 # =============================================================================================================================
