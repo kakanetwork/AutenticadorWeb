@@ -2,10 +2,30 @@ from django.shortcuts import render
 from .models import Usuario_BD
 from django.contrib.auth.hashers import make_password, check_password
 from django.conf import settings
+import requests
+
+
+def captcha_verify(captcha, secret_key):
+    dados = requests.post(
+        'https://www.google.com/recaptcha/api/siteverify',
+        data={
+            'secret': secret_key,
+            'response': captcha
+        }
+    )
+    result = dados.json()
+    if result['success']:
+        return True
+    else:
+        return False
 
 # Função para a página de cadastro
 def cadastro(request): 
+
+    # definindo variáveis sensíveis do recaptcha
     recaptcha_site_key = settings.RECAPTCHA_SITE_KEY
+    recaptcha_secret_key = settings.RECAPTCHA_SECRET_KEY
+
     mensagem_erro = None
     mensagem_sucesso = None
 
@@ -14,9 +34,11 @@ def cadastro(request):
 
         # Se Post: realiza o filtro do formulário enviado e adição do usuário ao BD
         novo_usuario = Usuario_BD()
+
+        captcha = request.POST.get('g-recaptcha-response') # capturando o resultado do recaptcha
         email = request.POST.get('email')
         senha = request.POST.get('senha')
-        conf_senha = request.POST.get('conf_senha')
+        conf_senha = request.POST.get('conf_senha') # capturando o resultado da confirmação de senha
 
         # Verificação de senha 
         if senha != conf_senha:
@@ -29,14 +51,15 @@ def cadastro(request):
             mensagem_erro = 'Você já possui cadastro com esse email.'
             return render(request, 'users/cadastro.html', {'mensagem_erro':mensagem_erro})
 
-        # Adição do usuário ao banco de dados 
-        try:
-            novo_usuario.email = email
-            novo_usuario.senha = make_password(senha) # realizando a criptografia da senha antes da inserção no BD
-            novo_usuario.save() 
-        except:
-            mensagem_erro = 'Outro erro'
+        # Verificação do recaptcha
+        if captcha_verify(captcha, recaptcha_secret_key) == False:
+            mensagem_erro = 'O reCAPTCHA não foi realizado corretamente, tente novamente.'
             return render(request, 'users/cadastro.html', {'mensagem_erro':mensagem_erro})
+        
+        # Adição do usuário ao banco de dados 
+        novo_usuario.email = email
+        novo_usuario.senha = make_password(senha) # realizando a criptografia da senha antes da inserção no BD
+        novo_usuario.save() 
 
         # Informando o sucesso do cadastro
         mensagem_sucesso = 'Seu cadastro foi concluído com sucesso!'
@@ -44,7 +67,8 @@ def cadastro(request):
     
     # Se requisição for GET, realiza apenas o render do HTML
     else:
-        return render(request, 'users/cadastro.html', {'recaptcha_site_key': recaptcha_site_key})
+        # passo junto ao render do html, a hash do recaptcha para marcação
+        return render(request, 'users/cadastro.html', {'recaptcha_site_key': recaptcha_site_key}) 
 
 
 # =============================================================================================================================

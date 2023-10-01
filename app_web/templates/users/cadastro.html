@@ -74,16 +74,17 @@
           <label class="form-check-label" for="flexSwitchCheckDefault">Aceite os usos e condições</label>
         </div>
 
-        <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+        <!-- Inserção da tag do recaptcha e key -->
+        <br><div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
 
         <!-- Aviso para quando o cadastro for concluído com sucesso -->
         {% if mensagem_sucesso %}
           <div class="alert alert-success">{{ mensagem_sucesso }}</div>
         {% endif %}
         
-
+                
         <!-- Botão de Envio -->
-        <input class="btn btn-primary" type="submit" value="Cadastrar">
+        <input style="font-size: 16px;" class="btn btn-primary" type="submit" value="Cadastrar">
       </div>
     </form>
 
