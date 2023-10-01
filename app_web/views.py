@@ -4,8 +4,11 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.conf import settings
 import requests
 
+ # definindo variáveis sensíveis do recaptcha
+recaptcha_site_key = settings.RECAPTCHA_SITE_KEY
 
-def captcha_verify(captcha, secret_key):
+def captcha_verify(captcha):
+    secret_key = settings.RECAPTCHA_SECRET_KEY
     dados = requests.post(
         'https://www.google.com/recaptcha/api/siteverify',
         data={
@@ -21,11 +24,6 @@ def captcha_verify(captcha, secret_key):
 
 # Função para a página de cadastro
 def cadastro(request): 
-
-    # definindo variáveis sensíveis do recaptcha
-    recaptcha_site_key = settings.RECAPTCHA_SITE_KEY
-    recaptcha_secret_key = settings.RECAPTCHA_SECRET_KEY
-
     mensagem_erro = None
     mensagem_sucesso = None
 
@@ -43,18 +41,18 @@ def cadastro(request):
         # Verificação de senha 
         if senha != conf_senha:
             mensagem_erro = 'As senhas não coincidem. Digite sua senha novamente.'
-            return render(request, 'users/cadastro.html', {'mensagem_erro': mensagem_erro})
+            return render(request, 'users/cadastro.html', {'mensagem_erro': mensagem_erro, 'recaptcha_site_key': recaptcha_site_key})
 
         # Verificação se email já é cadastrado
         verifica = Usuario_BD.objects.filter(email=email).first()
         if verifica:
             mensagem_erro = 'Você já possui cadastro com esse email.'
-            return render(request, 'users/cadastro.html', {'mensagem_erro':mensagem_erro})
+            return render(request, 'users/cadastro.html', {'mensagem_erro': mensagem_erro, 'recaptcha_site_key': recaptcha_site_key})
 
         # Verificação do recaptcha
-        if captcha_verify(captcha, recaptcha_secret_key) == False:
+        if captcha_verify(captcha) == False:
             mensagem_erro = 'O reCAPTCHA não foi realizado corretamente, tente novamente.'
-            return render(request, 'users/cadastro.html', {'mensagem_erro':mensagem_erro})
+            return render(request, 'users/cadastro.html', {'mensagem_erro': mensagem_erro, 'recaptcha_site_key': recaptcha_site_key})
         
         # Adição do usuário ao banco de dados 
         novo_usuario.email = email
@@ -63,7 +61,7 @@ def cadastro(request):
 
         # Informando o sucesso do cadastro
         mensagem_sucesso = 'Seu cadastro foi concluído com sucesso!'
-        return render(request,'users/cadastro.html', {'mensagem_sucesso': mensagem_sucesso})
+        return render(request,'users/cadastro.html', {'mensagem_sucesso': mensagem_sucesso, 'recaptcha_site_key': recaptcha_site_key})
     
     # Se requisição for GET, realiza apenas o render do HTML
     else:
@@ -79,8 +77,14 @@ def login(request):
 
     # Verifica se a requisição é POST ou Outra (Get...)
     if request.method == 'POST':
+        captcha = request.POST.get('g-recaptcha-response') # capturando o resultado do recaptcha
         email = request.POST.get('email')
         senha = request.POST.get('senha')
+
+        # Verificação do recaptcha
+        if captcha_verify(captcha) == False:
+            mensagem_erro = 'O reCAPTCHA não foi realizado corretamente, tente novamente.'
+            return render(request, 'users/login.html', {'mensagem_erro': mensagem_erro, 'recaptcha_site_key': recaptcha_site_key})
 
         try:
             # faço a verificação se o email existe no BD
@@ -96,11 +100,11 @@ def login(request):
                 raise Usuario_BD.DoesNotExist # para reaproveitar a mensagem de erro (é a mesma)
         except Usuario_BD.DoesNotExist:
             mensagem_erro = 'A senha ou email informados estão incorretos!'
-            return render(request, 'users/login.html', {'mensagem_erro': mensagem_erro})
+            return render(request, 'users/login.html', {'mensagem_erro': mensagem_erro, 'recaptcha_site_key': recaptcha_site_key})
         
         # Se requisição for GET, realiza apenas o render do HTML
     else:
-        return render(request, 'users/login.html')
+        return render(request, 'users/login.html', {'recaptcha_site_key': recaptcha_site_key})
     
 
 def contato(request):

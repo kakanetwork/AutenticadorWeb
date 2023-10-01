@@ -4,75 +4,75 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Login</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
   </head>
   
   <body>
     <!-- Definindo o background da navbar -->
     
-    <nav style="padding: 0 calc(50% - 90px)" class="navbar bg-primary" data-bs-theme="dark">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">  
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ">
-              <li class="nav-item">
-                <a style="color: white;" class="nav-link active" aria-current="page" href="/cadastro">Cadastro</a>
-              </li>
-              <li class="nav-item">
-                <a style="color: white;" class="nav-link" href="#">Login</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              </li>
-              <li class="nav-item">
-                <a style="color: white;" class="nav-link" href="/contatos">Contatos</a>
-              </li>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">Autenticador Web</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/cadastro">Cadastro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contatos">Contatos</a>
+                </li>
             </ul>
-          </div>
         </div>
-      </nav>
-    </nav>
+    </div>
+</nav>
 
     <!-- Formulário de Cadastro de Usuários  -->
-    <form method="post">
+  <div class="container">
 
-      {% csrf_token %}  <!-- Campo de CSRF (evita ataques) -->
-      
-      <br>
-      <div style="text-align: center;" class="container">
-        <br><h1>Login de Usuários</h1><br>
+    <div class="row justify-content-center mt-5">
+        <div style="text-align: center;" class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <h1 class="text-center">Login de Usuários</h1>
 
-        <!-- Campo de Email -->
-        <div class="form-floating mb-3">
-          <input id="email" name="email" type="email" class="form-control" placeholder="name@example.com" required>
-          <label for="email">Endereço de Email</label>
-        </div>
+                <div class="form-floating mb-3">
+                    <input id="email" name="email" type="email" class="form-control" placeholder="name@example.com" required>
+                    <label for="email">Endereço de Email</label>
+                </div>
 
-        <!-- Campo de Senha -->
-        <div class="form-floating mb-3">
-          <input id="senha" name="senha" type="password" class="form-control" placeholder="Senha" required>
-          <label for="senha">Senha</label>
-        </div>
+                <div class="form-floating mb-3">
+                    <input id="senha" name="senha" type="password" class="form-control" placeholder="Senha" required>
+                    <label for="senha">Senha</label>
+                </div>
 
-        <!-- Aviso para casos as senhas digitadas não sejam iguais -->
-        {% if mensagem_erro %}
-          <div class="alert alert-danger">{{ mensagem_erro }}</div>
-        {% endif %}
+                <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div><br>
 
-        <!-- Botão de Envio -->
-        <input class="btn btn-primary" type="submit" value="Fazer Login">
-        
+                {% if mensagem_erro %}
+                    <div class="alert alert-danger">{{ mensagem_erro }}</div>
+                {% endif %}
+
+                    <!-- Botões lado a lado -->
+                    <br>
+                    <div>
+                      <input class="btn btn-primary" type="submit" value="Fazer Login">
+                      <a class="btn btn-primary" href="/cadastro">Cadastre-se</a>
+                  </div>
+              </form>
+          </div>
       </div>
-    </form>
-    <br>
-    <div style="text-align: center;">
-      <a class="btn btn-primary" href="/contatos">Cadastre-se</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    </div>
+  </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   

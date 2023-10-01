@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2(r2=k03+(*226@12#aa*-wk(2=8iz!^&6wn@(dg^7epkv65an
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['autenticadorweb.up.railway.app', '127.0.0.1']
 
 
 # Application definition
@@ -127,5 +127,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY')
-RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY')
+RECAPTCHA_SITE_KEY = os.environ.get('RECAPTCHA_SITE_KEY', '6LfA72coAAAAAIywBiVX5YT3mTxglJ3DBoQ7sR0f')
+RECAPTCHA_SECRET_KEY = os.environ.get('RECAPTCHA_SECRET_KEY', '6LfA72coAAAAAAF2zG23XeR-jpzotvioXOpt7ESY')
