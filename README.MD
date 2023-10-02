@@ -4,7 +4,8 @@ Este é um projeto de exemplo onde criei um site de Login/Cadastro de Usuários 
 
 ## Exemplos:
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kakanetwork/AutenticadorWeb/content/Exemplo.gif">
+  <img src="https://raw.githubusercontent.com/kakanetwork/AutenticadorWeb/master/content/Exemplo.gif
+">
 </p>
 
 ## Para utilizar este Projeto siga os passos abaixo:
