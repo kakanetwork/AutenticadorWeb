@@ -3,7 +3,9 @@
 Este é um projeto de exemplo onde criei um site de Login/Cadastro de Usuários em Django integrado ao SQLite, com a tecnologia reCAPTCHA para segurança adicional. Utilizando templates HTML/Bootstrap para proporcionar uma experiência personalizada aos usuários.
 
 ## Exemplos:
-![Gif Site](https://imgur.com/a/Ex80iBa)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kakanetwork/AutenticadorWeb/content/Exemplo.gif">
+</p>
 
 ## Para utilizar este Projeto siga os passos abaixo:
 ### Clone este Repositório
