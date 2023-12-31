@@ -8,6 +8,8 @@
 
   <img src="https://img.shields.io/static/v1?label=DJANGO&message=framework&color=fe428e&style=for-the-badge&logo=DJANGO"/>
 
+  <img src="https://img.shields.io/static/v1?label=railway&message=deploy&color=fe428e&style=for-the-badge&logo=railway"/>
+
   <img src="http://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=fe428e&style=for-the-badge"/>
 </p>
 
