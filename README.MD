@@ -4,7 +4,7 @@
 <p align="center">
   <img src="http://img.shields.io/static/v1?label=License&message=MIT&color=fe428e&style=for-the-badge"/>
 
-  <img src="http://img.shields.io/static/v1?label=Python&message=3.11.0&color=fe428e&style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="http://img.shields.io/static/v1?label=Python&message=3.11.3&color=fe428e&style=for-the-badge&logo=python&logoColor=white"/>
 
    <img src="http://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=fe428e&style=for-the-badge"/>
 </p>
@@ -74,3 +74,14 @@ No mesmo arquivo settings.py, configure a variável CSRF_TRUSTED_ORIGINS para co
 <b>Fique à vontade para contribuir com melhorias para este projeto. Basta fazer um fork, criar um branch para sua feature e enviar um pull request.</b>
 
 <code>by kakanetwork</code>
+
+<h2 align="center">👀 Mais informações</h2>
+<p align="center">
+    Para mais informações sobre os projetos presentes neste repositório ou para sugerir alterações e correções, entre em contato comigo pelo meu perfil do GitHub, Instagram ou Linkedin.
+</p>
+<div align="center">
+    <a href="https://github.com/kakanetwork"><img src="https://img.shields.io/badge/-GitHub-4d080e?style=for-the-badge&color=141321&logo=github&logoColor=fe428e" alt="GitHub"></a>
+    <a href="https://www.instagram.com/kaka_0206/"><img src="https://img.shields.io/badge/-Instagram-4d080e?style=for-the-badge&logo=instagram&color=141321&logoColor=fe428e" alt="Instagram"></a>
+    <a href="https://https://www.linkedin.com/in/kalvinklein"><img src="https://img.shields.io/badge/-linkedin-4d080e?style=for-the-badge&logo=linkedin&color=141321&logoColor=fe428e" alt="Instagram"></a>
+    
+</div>
