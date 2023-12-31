@@ -4,9 +4,9 @@
 <p align="center">
   <img src="http://img.shields.io/static/v1?label=License&message=MIT&color=fe428e&style=for-the-badge"/>
 
-  <img src="https://img.shields.io/static/v1?label=DJANGO&message=framework&color=fe428e&style=for-the-badge&logo=DJANGO"/>
-
   <img src="http://img.shields.io/static/v1?label=Python&message=3.11.3&color=fe428e&style=for-the-badge&logo=python&logoColor=white"/>
+
+  <img src="https://img.shields.io/static/v1?label=DJANGO&message=framework&color=fe428e&style=for-the-badge&logo=DJANGO"/>
 
   <img src="http://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=fe428e&style=for-the-badge"/>
 </p>
