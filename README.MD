@@ -1,4 +1,14 @@
-# Projeto Autenticador Web
+
+<h1 align="center">📌  Projeto Autenticador Web </h1>
+
+<p align="center">
+  <img src="http://img.shields.io/static/v1?label=License&message=MIT&color=fe428e&style=for-the-badge"/>
+
+  <img src="http://img.shields.io/static/v1?label=Python&message=3.11.0&color=fe428e&style=for-the-badge&logo=python&logoColor=white"/>
+
+   <img src="http://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=fe428e&style=for-the-badge"/>
+</p>
+
 [Acesse o Site](https://autenticadorweb.up.railway.app/)
 
 Este é um projeto de exemplo onde criei um site de Login/Cadastro de Usuários em Django integrado ao SQLite, com a tecnologia reCAPTCHA para segurança adicional. Utilizando templates HTML/Bootstrap para proporcionar uma experiência personalizada aos usuários.
